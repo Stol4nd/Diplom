@@ -6,7 +6,6 @@ class Task_4:
         self.network = None
         self.ip_address_first = None
         self.ip_address_second = None
-        self.subnet_mask = None
         
     def generate_task(self):
         first_octet = random.randint(100, 255)
@@ -19,28 +18,24 @@ class Task_4:
         self.network = ipaddress.IPv4Network((ip_str, subnet), strict=False)
         self.ip_address_first = str(list(self.network.hosts())[0])
         self.ip_address_second = str(list(self.network.hosts())[-1])
-    
+        self.network = str(self.network)
+        
     def check_answers(self, student_answers):
-        
+        network = ipaddress.IPv4Network(self.network, strict=False)
         correct_answers = {
-            'decimal_network': str(self.network.network_address),
-            'binary_network': format(int(ipaddress.IPv4Address(self.network.network_address)), '032b'),
-            'decimal_subnet': str(self.network.netmask),
-            'binary_subnet': format(int(ipaddress.IPv4Address(self.network.netmask)), '032b')
+            'decimal_network': str(network.network_address),
+            'binary_network': format(int(ipaddress.IPv4Address(network.network_address)), '032b'),
+            'decimal_subnet': str(network.netmask),
+            'binary_subnet': format(int(ipaddress.IPv4Address(network.netmask)), '032b')
         }
-        print(correct_answers)
-        # for key, value in correct_answers.items():
-        #     print(f"{key}: {value}")
-        # results = {}
-        # for key, value in student_answers.items():
-        #     if key in correct_answers:
-        #         results[key] = (value == correct_answers[key])
+        for key, value in correct_answers.items():
+            print(f"{key}: {value}")
+        results = {}
+        for key, value in student_answers.items():
+            if key in correct_answers:
+                results[key] = (value == correct_answers[key])
         
-        # return results
-
-# Пример использования
-generator = Task_4()
-generator.generate_task()
-
-print(f"Запишите адрес сети и маску сети, соответствующие указанному диапазону IP адресов: от {generator.ip_address_first} до {generator.ip_address_second}")
-generator.check_answers({})
+        return results
+task_4 = Task_4()
+task_4.generate_task()
+print(task_4.__dict__)

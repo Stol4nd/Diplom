@@ -1,0 +1,14 @@
+<!DOCTYPE html>
+<html>
+<body>
+    <h1>Задание 4</h1>
+    <p> Запишите адрес сети и маску сети, соответствующие указанному диапазону IP адресов: от {{ task_data.ip_address_first }} до {{ task_data.ip_address_second }} </p>
+    <form method="post">
+        <label>IP адрес сети (десятичный):</label><input type="text" name="decimal_network"><br>
+        <label>IP адрес сети (двочиный):</label><input type="text" name="binary_network"><br>
+        <label>Маска подсети (десятичная):</label><input type="text" name="decimal_subnet"><br>
+        <label>Маска подсети (двоичная):</label><input type="text" name="binary_subnet"><br>
+        <input type="submit" value="Отправить ответ">
+    </form>
+</body>
+</html>
