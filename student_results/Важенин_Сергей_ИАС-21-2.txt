@@ -1,0 +1,38 @@
+Task 1:
+binary_first_host: False
+binary_last_host: False
+binary_network: False
+binary_subnet: False
+broadcast_binary: False
+broadcast_decimal: False
+decimal_first_host: False
+decimal_last_host: False
+decimal_network: True
+decimal_subnet: False
+ip_class: True
+
+Task 2:
+binary_network: False
+broadcast_binary: False
+broadcast_decimal: False
+decimal_network: False
+
+Task 3:
+binary_first_host: False
+binary_last_host: False
+binary_network: False
+binary_subnet: False
+broadcast_binary: False
+broadcast_decimal: False
+decimal_first_host: False
+decimal_last_host: False
+decimal_network: False
+decimal_subnet: False
+
+Task 4:
+binary_network: False
+binary_subnet: False
+decimal_network: False
+decimal_subnet: False
+
+Task 5:

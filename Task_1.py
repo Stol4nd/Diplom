@@ -43,34 +43,25 @@ class Task_1:
         
         self.ip_address = ip_str
         self.subnet_mask = str(network.netmask)
-        self.network = network
     
     def check_answers(self, student_answers):
+        network = ipaddress.IPv4Network(f"{self.ip_address}/{self.subnet_mask}", strict=False)
         correct_answers = {
             'ip_class': str(self.ip_class),
-            'decimal_network': str(self.network.network_address),
-            'binary_network': format(int(ipaddress.IPv4Address(self.network.network_address)), '032b'),
-            'decimal_first_host': str(list(self.network.hosts())[0]),
-            'binary_first_host': format(int(ipaddress.IPv4Address(list(self.network.hosts())[0])), '032b'),
-            'decimal_last_host': str(list(self.network.hosts())[-1]),
-            'binary_last_host': format(int(ipaddress.IPv4Address(list(self.network.hosts())[-1])), '032b'),
-            'broadcast_decimal': str(self.network.broadcast_address),
-            'broadcast_binary': format(int(ipaddress.IPv4Address(self.network.broadcast_address)), '032b'),
+            'decimal_network': str(network.network_address),
+            'binary_network': format(int(ipaddress.IPv4Address(network.network_address)), '032b'),
+            'decimal_first_host': str(list(network.hosts())[0]),
+            'binary_first_host': format(int(ipaddress.IPv4Address(list(network.hosts())[0])), '032b'),
+            'decimal_last_host': str(list(network.hosts())[-1]),
+            'binary_last_host': format(int(ipaddress.IPv4Address(list(network.hosts())[-1])), '032b'),
+            'broadcast_decimal': str(network.broadcast_address),
+            'broadcast_binary': format(int(ipaddress.IPv4Address(network.broadcast_address)), '032b'),
             'decimal_subnet': self.subnet_mask,
             'binary_subnet': format(int(ipaddress.IPv4Address(self.subnet_mask)), '032b')
         }
-        for key, value in correct_answers.items():
-            print(f"{key}: {value}")
-        # results = {}
-        # for key, value in student_answers.items():
-        #     if key in correct_answers:
-        #         results[key] = (value == correct_answers[key])
+        results = {}
+        for key, value in student_answers.items():
+            if key in correct_answers:
+                results[key] = (value == correct_answers[key])
         
-        # return results
-
-# Пример использования
-generator = Task_1()
-generator.generate_task()
-
-print(f"Запишите класс, адрес сети, первого и последнего хостов в данной сети, а также маску сети и широковещательный адрес, используя классы, для IP-адреса: {generator.ip_address}")
-generator.check_answers({})
+        return results

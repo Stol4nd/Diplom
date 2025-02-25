@@ -19,19 +19,19 @@ class Task_2:
         
         self.ip_address = ip_str
         self.subnet_mask = str(network.netmask)
-        self.network = network
     
     
-    def chech_answers(self, student_answers):
+    def check_answers(self, student_answers):
+        network = ipaddress.IPv4Network(f"{self.ip_address}/{self.subnet_mask}", strict=False)
         correct_answers = {
-            'decimal_network' : str(self.network.network_address),
-            'binary_network' : format(int(ipaddress.IPv4Address(self.network.network_address)), '032b'),
-            'first_ip_decimal': str(list(self.network.hosts())[0]),
-            'first_ip_binary': format(int(ipaddress.IPv4Address(list(self.network.hosts())[0])), '032b'),
-            'last_ip_decimal': str(list(self.network.hosts())[-1]),
-            'last_ip_binary': format(int(ipaddress.IPv4Address(list(self.network.hosts())[-1])), '032b'),
-            'broadcast_decimal': str(self.network.broadcast_address),
-            'broadcast_binary': format(int(ipaddress.IPv4Address(self.network.broadcast_address)), '032b')
+            'decimal_network' : str(network.network_address),
+            'binary_network' : format(int(ipaddress.IPv4Address(network.network_address)), '032b'),
+            'first_ip_decimal': str(list(network.hosts())[0]),
+            'first_ip_binary': format(int(ipaddress.IPv4Address(list(network.hosts())[0])), '032b'),
+            'last_ip_decimal': str(list(network.hosts())[-1]),
+            'last_ip_binary': format(int(ipaddress.IPv4Address(list(network.hosts())[-1])), '032b'),
+            'broadcast_decimal': str(network.broadcast_address),
+            'broadcast_binary': format(int(ipaddress.IPv4Address(network.broadcast_address)), '032b')
         } 
         print(correct_answers)
         results = {}
@@ -40,10 +40,5 @@ class Task_2:
                 results[key] = (value == correct_answers[key])
         
         return results
-    
-task = Task_2()
-task.generate_task()
-print(f"Запишите адрес сети, адреса первого и последнего хостов, а также широковещательный адрес для IP-адреса {task.ip_address} с маской {task.subnet_mask}")
-task.chech_answers({})
 
         
