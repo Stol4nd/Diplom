@@ -11,6 +11,17 @@ class Task_5:
         'subnet_mask_decimal', 'subnet_mask_binary'
     ]
     
+    field_translations = {
+        'first_host_decimal': 'Десятичный первый хост',
+        'first_host_binary': 'Двоичный первый хост',
+        'last_host_decimal': 'Десятичный последний хост',
+        'last_host_binary': 'Двоичный последний хост',
+        'subnet_decimal': 'Десятичный адрес подсети',
+        'subnet_binary': 'Двоичный адрес подсети',
+        'subnet_mask_decimal': 'Десятичная маска подсети',
+        'subnet_mask_binary': 'Двоичная маска подсети'
+    }
+    
     def __init__(self):
         self.network = None
         self.ip_address = None

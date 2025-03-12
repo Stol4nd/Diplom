@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Детали контрольной работы</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+<body>
+    <header>
+        <h1>Детали контрольной работы | Жуковский В.E.</h1>
+    </header>
+    <div class="container">
+        <h2>Результаты проверки</h2>
+        <p><strong>Группа:</strong> {{ group }}</p>
+        <p><strong>Файл:</strong> {{ filename }}</p>
+        {% if error %}
+            <p style="color: red;">{{ error }}</p>
+        {% else %}
+            <pre>{{ content }}</pre>
+        {% endif %}
+        <a href="{{ url_for('view_results') }}"><button class="button">Назад</button></a>
+    </div>
+</body>
+</html>

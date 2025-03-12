@@ -12,6 +12,20 @@ class Task_1:
         'decimal_subnet', 'binary_subnet'
     ]   
     
+    field_translations = {
+        'ip_class': 'Класс публичного IP-адреса',
+        'decimal_network': 'Десятичный IP-адрес сети',
+        'binary_network': 'Двоичный IP-адрес сети',
+        'decimal_first_host': 'Десятичный адрес первого хоста',
+        'binary_first_host': 'Двоичный адрес первого хоста',
+        'decimal_last_host': 'Десятичный адрес последнего хоста',
+        'binary_last_host': 'Двоичный адрес последнего хоста',
+        'broadcast_decimal': 'Десятичный широковещательный адрес',
+        'broadcast_binary': 'Двоичный широковещательный адрес',
+        'decimal_subnet': 'Десятичная маска подсети',
+        'binary_subnet': 'Двоичная маска подсети'
+    }
+    
     def __init__(self):
         self.ip_address = None
         self.subnet_mask = None

@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Панель преподавателя</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+<body>
+    <header>
+        <h1>Панель преподавателя | Жуковский В.Е.</h1>
+    </header>
+    <div class="container">
+        <h2>Добро пожаловать, преподаватель!</h2>
+        <div>
+            <a href="{{ url_for('view_results') }}"><button class="button active">Просмотр контрольных работ</button></a>
+            <a href="#"><button class="button inactive" disabled>Генерация вопросов</button></a>
+        </div>
+        <a href="{{ url_for('index') }}"><button class="button">Выйти</button></a>
+    </div>
+</body>
+</html>

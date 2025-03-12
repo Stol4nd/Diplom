@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Просмотр контрольных работ</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+<body>
+    <header>
+        <h1>Просмотр контрольных работ | Жуковский В.Е.</h1>
+    </header>
+    <div class="container">
+        <h2>Контрольные работы студентов</h2>
+        {% if results %}
+            {% for result in results %}
+                <div style="margin-bottom: 20px;">
+                    <img src="{{ result.icon }}" alt="Document Icon" style="width: 20px; vertical-align: middle; margin-right: 10px;">
+                    <a href="{{ url_for('view_result_details', file_path=result.file_path) }}">
+                        <strong>Группа: {{ result.group }}</strong> | Файл: {{ result.filename }}
+                    </a>
+                </div>
+                <hr>
+            {% endfor %}
+        {% else %}
+            <p>Нет доступных контрольных работ.</p>
+        {% endif %}
+        <a href="{{ url_for('teacher_dashboard') }}"><button class="button">Назад</button></a>
+    </div>
+</body>
+</html>
