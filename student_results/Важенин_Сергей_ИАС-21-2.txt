@@ -1,38 +1,70 @@
 Task 1:
-binary_first_host: False
-binary_last_host: False
-binary_network: False
-binary_subnet: False
-broadcast_binary: False
-broadcast_decimal: False
-decimal_first_host: False
-decimal_last_host: False
-decimal_network: True
-decimal_subnet: False
-ip_class: True
+ip_class: Правильно
+decimal_network: Неправильно. Ответ студента: 1
+binary_network: Неправильно. Ответ студента: 1
+decimal_first_host: Неправильно. Ответ студента: 1
+binary_first_host: Неправильно. Ответ студента: 1
+decimal_last_host: Неправильно. Ответ студента: 1
+binary_last_host: Неправильно. Ответ студента: 1
+broadcast_decimal: Неправильно. Ответ студента: 11
+broadcast_binary: Неправильно. Ответ студента: 1
+decimal_subnet: Неправильно. Ответ студента: 1
+binary_subnet: Неправильно. Ответ студента: 11
 
 Task 2:
-binary_network: False
-broadcast_binary: False
-broadcast_decimal: False
-decimal_network: False
+decimal_network: Неправильно. Ответ студента: 1
+binary_network: Неправильно. Ответ студента: 1
+decimal_first_host: Неправильно. Ответ студента: 1
+binary_first_host: Неправильно. Ответ студента: 1
+decimal_last_host: Неправильно. Ответ студента: 1
+binary_last_host: Неправильно. Ответ студента: 1
+broadcast_decimal: Неправильно. Ответ студента: 1
+broadcast_binary: Неправильно. Ответ студента: 1
 
 Task 3:
-binary_first_host: False
-binary_last_host: False
-binary_network: False
-binary_subnet: False
-broadcast_binary: False
-broadcast_decimal: False
-decimal_first_host: False
-decimal_last_host: False
-decimal_network: False
-decimal_subnet: False
+decimal_network: Неправильно. Ответ студента: 1
+binary_network: Неправильно. Ответ студента: 1
+decimal_first_host: Неправильно. Ответ студента: 1
+binary_first_host: Неправильно. Ответ студента: 1
+decimal_last_host: Неправильно. Ответ студента: 1
+binary_last_host: Неправильно. Ответ студента: 1
+broadcast_decimal: Неправильно. Ответ студента: 1
+broadcast_binary: Неправильно. Ответ студента: 1
+decimal_subnet: Неправильно. Ответ студента: 1
+binary_subnet: Неправильно. Ответ студента: 1
 
 Task 4:
-binary_network: False
-binary_subnet: False
-decimal_network: False
-decimal_subnet: False
+decimal_network: Неправильно. Ответ студента: 1
+binary_network: Неправильно. Ответ студента: 1
+decimal_subnet: Неправильно. Ответ студента: 1
+binary_subnet: Неправильно. Ответ студента: 1
 
 Task 5:
+Subnet 1:
+first_host_decimal: Неправильно. Ответ студента: 1
+first_host_binary: Неправильно. Ответ студента: 1
+last_host_decimal: Неправильно. Ответ студента: 1
+last_host_binary: Неправильно. Ответ студента: 1
+subnet_decimal: Неправильно. Ответ студента: 1
+subnet_binary: Неправильно. Ответ студента: 1
+subnet_mask_decimal: Неправильно. Ответ студента: 1
+subnet_mask_binary: Неправильно. Ответ студента: 1
+Subnet 2:
+first_host_decimal: Неправильно. Ответ студента: 1
+first_host_binary: Неправильно. Ответ студента: 1
+last_host_decimal: Неправильно. Ответ студента: 1
+last_host_binary: Неправильно. Ответ студента: 1
+subnet_decimal: Неправильно. Ответ студента: 1
+subnet_binary: Неправильно. Ответ студента: 1
+subnet_mask_decimal: Неправильно. Ответ студента: 1
+subnet_mask_binary: Неправильно. Ответ студента: 1
+Subnet 3:
+first_host_decimal: Неправильно. Ответ студента: 1
+first_host_binary: Неправильно. Ответ студента: 1
+last_host_decimal: Неправильно. Ответ студента: 1
+last_host_binary: Неправильно. Ответ студента: 1
+subnet_decimal: Неправильно. Ответ студента: 1
+subnet_binary: Неправильно. Ответ студента: 1
+subnet_mask_decimal: Неправильно. Ответ студента: 1
+subnet_mask_binary: Неправильно. Ответ студента: 1
+

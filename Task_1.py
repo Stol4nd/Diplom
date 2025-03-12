@@ -2,10 +2,19 @@ import random
 import ipaddress
 
 class Task_1:
+    
+    field_order = [
+        'ip_class',
+        'decimal_network', 'binary_network',
+        'decimal_first_host', 'binary_first_host',
+        'decimal_last_host', 'binary_last_host',
+        'broadcast_decimal', 'broadcast_binary',
+        'decimal_subnet', 'binary_subnet'
+    ]   
+    
     def __init__(self):
         self.ip_address = None
         self.subnet_mask = None
-        self.network = None
         self.ip_class = None
         
     def generate_task(self):
@@ -43,25 +52,34 @@ class Task_1:
         
         self.ip_address = ip_str
         self.subnet_mask = str(network.netmask)
+
     
     def check_answers(self, student_answers):
         network = ipaddress.IPv4Network(f"{self.ip_address}/{self.subnet_mask}", strict=False)
+        network_address = network.network_address
+        broadcast_address = network.broadcast_address
+        first_host = ipaddress.IPv4Address(int(network_address) + 1)
+        last_host = ipaddress.IPv4Address(int(broadcast_address) - 1)
+        
         correct_answers = {
             'ip_class': str(self.ip_class),
-            'decimal_network': str(network.network_address),
-            'binary_network': format(int(ipaddress.IPv4Address(network.network_address)), '032b'),
-            'decimal_first_host': str(list(network.hosts())[0]),
-            'binary_first_host': format(int(ipaddress.IPv4Address(list(network.hosts())[0])), '032b'),
-            'decimal_last_host': str(list(network.hosts())[-1]),
-            'binary_last_host': format(int(ipaddress.IPv4Address(list(network.hosts())[-1])), '032b'),
-            'broadcast_decimal': str(network.broadcast_address),
-            'broadcast_binary': format(int(ipaddress.IPv4Address(network.broadcast_address)), '032b'),
+            'decimal_network': str(network_address),
+            'binary_network': format(int(network_address), '032b'),
+            'decimal_first_host': str(first_host),
+            'binary_first_host': format(int(first_host), '032b'),
+            'decimal_last_host': str(last_host),
+            'binary_last_host': format(int(last_host), '032b'),
+            'broadcast_decimal': str(broadcast_address),
+            'broadcast_binary': format(int(broadcast_address), '032b'),
             'decimal_subnet': self.subnet_mask,
             'binary_subnet': format(int(ipaddress.IPv4Address(self.subnet_mask)), '032b')
         }
-        results = {}
-        for key, value in student_answers.items():
+        results = {key: None for key in self.field_order}
+        for key, student_value in student_answers.items():
             if key in correct_answers:
-                results[key] = (value == correct_answers[key])
-        
+                if student_value == correct_answers[key]:
+                    results[key] = f"{key}: Правильно"
+                else:
+                    results[key] = f"{key}: Неправильно. Ответ студента: {student_value}"
+        results = {k: v for k, v in results.items() if v is not None}
         return results

@@ -1,8 +1,12 @@
 <!DOCTYPE html>
 <html>
+<head>
+    <title>Контрольная работа</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+</head>
 <body>
     <h1>Задание 2</h1>
-    <p>"Запишите адрес сети, адреса первого и последнего хостов, а также широковещательный адрес для IP-адреса {{task_data.ip_address }} с маской  {{ task_data.subnet_mask }}</p>
+    <p>Запишите адрес сети, адреса первого и последнего хостов, а также широковещательный адрес для IP-адреса {{task_data.ip_address }} с маской  {{ task_data.subnet_mask }}</p>
     <form method="post">
         <label>IP адрес сети (десятичный):</label><input type="text" name="decimal_network"><br>
         <label>IP адрес сети (двочиный):</label><input type="text" name="binary_network"><br>

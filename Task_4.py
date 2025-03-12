@@ -2,6 +2,12 @@ import random
 import ipaddress
 
 class Task_4:
+    
+    field_order = [
+        'decimal_network', 'binary_network',
+        'decimal_subnet', 'binary_subnet'
+    ]
+    
     def __init__(self):
         self.network = None
         self.ip_address_first = None
@@ -28,14 +34,12 @@ class Task_4:
             'decimal_subnet': str(network.netmask),
             'binary_subnet': format(int(ipaddress.IPv4Address(network.netmask)), '032b')
         }
-        for key, value in correct_answers.items():
-            print(f"{key}: {value}")
-        results = {}
-        for key, value in student_answers.items():
+        results = {key: None for key in self.field_order}
+        for key, student_value in student_answers.items():
             if key in correct_answers:
-                results[key] = (value == correct_answers[key])
-        
+                if student_value == correct_answers[key]:
+                    results[key] = f"{key}: Правильно"
+                else:
+                    results[key] = f"{key}: Неправильно. Ответ студента: {student_value}"
+        results = {k: v for k, v in results.items() if v is not None}
         return results
-task_4 = Task_4()
-task_4.generate_task()
-print(task_4.__dict__)

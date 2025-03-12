@@ -1,0 +1,115 @@
+/* Общие стили для всего сайта */
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #D3D3D3; /* Светло-серый фон, как на скриншоте */
+    color: #000000; /* Черный текст */
+}
+
+/* Стили для заголовка (шапки сайта) */
+header {
+    background-color: #FF8C00; /* Оранжевый фон, как на скриншоте */
+    color: white;
+    padding: 10px 20px;
+    text-align: right;
+    border-bottom: 2px solid #D3D3D3;
+}
+
+header h1 {
+    margin: 0;
+    font-size: 18px;
+}
+
+header .user {
+    font-weight: bold;
+}
+
+/* Стили для основного контейнера */
+.container {
+    max-width: 800px;
+    margin: 20px auto;
+    padding: 20px;
+    background-color: white;
+    border-radius: 5px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+/* Стили для кнопок */
+.button {
+    display: inline-block;
+    padding: 15px 30px;
+    margin: 10px;
+    background-color: #FF8C00; /* Оранжевый цвет кнопок */
+    color: white;
+    text-decoration: none;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 16px;
+    text-align: center;
+    width: 200px;
+}
+
+.button:disabled, .button.disabled {
+    background-color: #D3D3D3; /* Серый для неактивных кнопок */
+    cursor: not-allowed;
+}
+
+/* Стили для активных и неактивных кнопок */
+.button.active {
+    background-color: #FF8C00;
+}
+
+.button.inactive {
+    background-color: #D3D3D3;
+    color: #666;
+}
+
+/* Стили для текста и описания */
+p, label {
+    font-size: 14px;
+    line-height: 1.6;
+}
+
+/* Стили для форм */
+form {
+    margin: 20px 0;
+}
+
+input[type="text"], input[type="submit"] {
+    padding: 10px;
+    margin: 5px 0;
+    border: 1px solid #D3D3D3;
+    border-radius: 4px;
+    font-size: 14px;
+}
+
+input[type="submit"] {
+    background-color: #FF8C00;
+    color: white;
+    border: none;
+    cursor: pointer;
+}
+
+input[type="submit"]:hover {
+    background-color: #E67E00; /* Более темный оранжевый при наведении */
+}
+
+/* Стили для ссылок */
+a {
+    color: #FF8C00;
+    text-decoration: none;
+}
+
+a:hover {
+    text-decoration: underline;
+}
+
+/* Стили для футера или нижней части (если нужно) */
+footer {
+    text-align: center;
+    padding: 10px;
+    color: #666;
+    background-color: #D3D3D3;
+}

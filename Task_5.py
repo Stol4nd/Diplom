@@ -3,6 +3,14 @@ import ipaddress
 import math
 
 class Task_5:
+    
+    field_order = [
+        'first_host_decimal', 'first_host_binary',
+        'last_host_decimal', 'last_host_binary',
+        'subnet_decimal', 'subnet_binary',
+        'subnet_mask_decimal', 'subnet_mask_binary'
+    ]
+    
     def __init__(self):
         self.network = None
         self.ip_address = None
@@ -24,7 +32,7 @@ class Task_5:
         self.subnets = random.randint(2, 4)  
         self.subnet_bits = math.ceil(self.subnets / 2)
     
-    def check_answers(self, student_answers):
+    def check_answers(self, student_answers):      
         new_prefix = self.network_mask + self.subnet_bits
         network = ipaddress.IPv4Network(self.network, strict=False)
         subnets = list(network.subnets(new_prefix=new_prefix))
@@ -45,12 +53,13 @@ class Task_5:
             )
         results = []
         for i in range(self.subnets):
-            results_i = {}
-            for key, value in student_answers[i].items():
+            results_i = {key: None for key in self.field_order}
+            for key, student_value in student_answers[i].items():
                 if key in correct_answers[i]:
-                    results_i[key] = (value == correct_answers[i][key])
+                    if student_value == correct_answers[i][key]:
+                        results_i[key] = f"{key}: Правильно"
+                    else:
+                        results_i[key] = f"{key}: Неправильно. Ответ студента: {student_value}"
+            results_i = {k: v for k, v in results_i.items() if v is not None}
             results.append(results_i)
-            print(results_i)
-task_5 = Task_5()
-task_5.generate_task()
-print(task_5.__dict__)
+        return results

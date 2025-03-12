@@ -1,5 +1,9 @@
 <!DOCTYPE html>
 <html>
+<head>
+    <title>Контрольная работа</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+</head>
 <body>
     <h1>Задание 4</h1>
     <p> Запишите адрес сети и маску сети, соответствующие указанному диапазону IP адресов: от {{ task_data.ip_address_first }} до {{ task_data.ip_address_second }} </p>

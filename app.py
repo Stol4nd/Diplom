@@ -9,6 +9,7 @@ from Task_5 import Task_5
 
 app = Flask(__name__)
 app.secret_key = 'your-secret-key-here'  # Needed for session management
+app.static_folder = 'static'
 
 # Создадим словарь с классами заданий для контрольной работы студентов
 tasks = {
@@ -70,18 +71,21 @@ def task():
     # Проверка на количество заданий в контрольной работе, если последнее выполненное задание было 5ым, то необходимо записать результаты выполения задания в файл, очистить сессию пользователя и перекинуть его на домашнюю страницу
     if task_num > 5:  
         student_id = f"{session['student_info']['surname']}_{session['student_info']['name']}_{session['student_info']['group']}"  # Создаем название файла для студента и открываем его на запись
-        with open(os.path.join(RESULTS_DIR, f"{student_id}.txt"), 'w') as f:
+        with open(os.path.join(RESULTS_DIR, f"{student_id}.txt"), 'w', encoding='UTF-8') as f:
             # print(session['results'])
             for t_num, result in session['results'].items():
                 f.write(f"Task {t_num}:\n")
+                task_class = tasks[int(t_num)]
                 if t_num == '5':
                     for subnet_num, subnet_result in enumerate(result):  # Для каждой подсети выполняем запись результатов оценки задания студента
                         f.write(f"Subnet {subnet_num + 1}:\n")
-                        for key, value in subnet_result.items():
-                            f.write(f"{key}: {value}\n")
+                        for key in task_class.field_order:
+                            if key in subnet_result:
+                                f.write(f"{subnet_result[key]}\n")
                 else:
-                    for key, value in result.items():
-                        f.write(f"{key}: {value}\n")
+                    for key in task_class.field_order:
+                        if key in result:
+                            f.write(f"{result[key]}\n")
                 f.write("\n")
         session.clear()  # Очищаем параметры сессии
         return redirect(url_for('index'))
@@ -110,6 +114,7 @@ def task():
             # Если выполнено задание под номером 5, то необходимо преобразовать словарь ответов студента в список словарей для каждой подсети
             student_answers = []
             form_data = request.form.to_dict()  # Получаем все данные формы как один словарь
+            print(form_data)
             for i in range(task_data['subnets']):
                 subnet_answers = {
                     'first_host_decimal': form_data[f'subnet_{i}_first_host_decimal'],
