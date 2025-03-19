@@ -23,7 +23,9 @@
         {% else %}
             <p>Нет доступных контрольных работ.</p>
         {% endif %}
-        <a href="{{ url_for('teacher_dashboard') }}"><button class="button">Назад</button></a>
+        <div class="button-container">
+            <a href="{{ url_for('teacher_dashboard') }}"><button class="button">Назад</button></a>
+        </div>
     </div>
 </body>
 </html>

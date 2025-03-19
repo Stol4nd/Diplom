@@ -2,8 +2,8 @@
 from flask import render_template, request, redirect, url_for, session
 import ipaddress
 import os
-from config import TEACHER_PASSWORD, STATIC_FOLDER, RESULTS_BASE_DIR
-from utils import save_results
+from config import TEACHER_PASSWORD, STATIC_FOLDER, RESULTS_BASE_DIR, LAB_TOPICS
+from utils import save_results, get_questions
 from tasks import tasks  # Импорт tasks из tasks.py
 
 def configure_routes(app):
@@ -75,7 +75,21 @@ def configure_routes(app):
                 return render_template('view_result_details.html', content=content, group=group, filename=filename)
         except Exception as e:
             return render_template('view_result_details.html', error=f"Ошибка загрузки файла: {str(e)}")
-
+    
+    @app.route('/teacher/lab_list')
+    def lab_list():
+        if not session.get('teacher_authenticated'):
+            return redirect(url_for('teacher'))
+        return render_template('lab_list.html', lab_topics=LAB_TOPICS)
+    
+    @app.route('/teacher/lab_questions/<topic>')
+    def lab_questions(topic):
+        if not session.get('teacher_authenticated'):
+            return redirect(url_for('teacher'))
+        if topic not in LAB_TOPICS:
+            return render_template('lab_questions.html', error="Тема не найдена")
+        questions = get_questions(topic).split("\n")
+        return render_template('lab_questions.html', topic=topic, questions=questions)
 
     @app.route('/task', methods=['GET', 'POST'])
     def task():

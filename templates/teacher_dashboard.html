@@ -10,11 +10,11 @@
     </header>
     <div class="container">
         <h2>Добро пожаловать, преподаватель!</h2>
-        <div>
+        <div class="button-container">
             <a href="{{ url_for('view_results') }}"><button class="button active">Просмотр контрольных работ</button></a>
-            <a href="#"><button class="button inactive" disabled>Генерация вопросов</button></a>
+            <a href="{{ url_for('lab_list') }}"><button class="button active">Список лабораторных работ</button></a>
+            <a href="{{ url_for('index') }}"><button class="button">Выйти</button></a>
         </div>
-        <a href="{{ url_for('index') }}"><button class="button">Выйти</button></a>
     </div>
 </body>
 </html>

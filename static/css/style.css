@@ -3,13 +3,13 @@ body {
     font-family: Arial, sans-serif;
     margin: 0;
     padding: 0;
-    background-color: #D3D3D3; /* Светло-серый фон, как на скриншоте */
+    background-color: #D3D3D3; /* Светло-серый фон */
     color: #000000; /* Черный текст */
 }
 
 /* Стили для заголовка (шапки сайта) */
 header {
-    background-color: #FF8C00; /* Оранжевый фон, как на скриншоте */
+    background-color: #FF8C00; /* Оранжевый фон */
     color: white;
     padding: 10px 20px;
     text-align: right;
@@ -19,10 +19,6 @@ header {
 header h1 {
     margin: 0;
     font-size: 18px;
-}
-
-header .user {
-    font-weight: bold;
 }
 
 /* Стили для основного контейнера */
@@ -35,11 +31,25 @@ header .user {
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
 }
 
+.container h2 {
+    text-align: center;
+}
+
+/* Контейнер для кнопок с использованием flexbox */
+.button-container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 10px; /* Расстояние между кнопками */
+    margin: 20px 0;
+}
+
 /* Стили для кнопок */
 .button {
     display: inline-block;
-    padding: 15px 30px;
-    margin: 10px;
+    padding: 15px 0; /* Убираем горизонтальные padding, чтобы ширина определялась width */
+    width: 200px; /* Фиксированная ширина для всех кнопок */
+    height: 67;
     background-color: #FF8C00; /* Оранжевый цвет кнопок */
     color: white;
     text-decoration: none;
@@ -48,7 +58,25 @@ header .user {
     cursor: pointer;
     font-size: 16px;
     text-align: center;
-    width: 200px;
+    box-sizing: border-box; /* Учитываем padding и border в ширине */
+}
+
+/* Стили для кнопок внутри форм (например, input[type="submit"]) */
+input[type="submit"] {
+    padding: 15px 0;
+    width: 200px; /* Та же ширина, что у .button */
+    background-color: #FF8C00;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 16px;
+    text-align: center;
+    box-sizing: border-box;
+}
+
+input[type="submit"]:hover {
+    background-color: #E67E00; /* Более темный оранжевый при наведении */
 }
 
 .button:disabled, .button.disabled {
@@ -77,23 +105,14 @@ form {
     margin: 20px 0;
 }
 
-input[type="text"], input[type="submit"] {
+input[type="text"], input[type="password"] {
     padding: 10px;
     margin: 5px 0;
     border: 1px solid #D3D3D3;
     border-radius: 4px;
     font-size: 14px;
-}
-
-input[type="submit"] {
-    background-color: #FF8C00;
-    color: white;
-    border: none;
-    cursor: pointer;
-}
-
-input[type="submit"]:hover {
-    background-color: #E67E00; /* Более темный оранжевый при наведении */
+    width: 100%; /* Поля ввода на всю ширину контейнера */
+    box-sizing: border-box;
 }
 
 /* Стили для ссылок */

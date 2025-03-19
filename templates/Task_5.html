@@ -5,21 +5,33 @@
     <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
 </head>
 <body>
-    <h1>Задание 5</h1>
-    <p>Определите диапазон идентификаторов узлов для каждой из образуемых {{task_data.subnets}}х подсетей из сети {{task_data.ip_address}}/{{task_data.network_mask}}</p>
-    <form method="post">
-        {% for i in range(task_data.subnets) %}
-            <h3>Подсеть {{ i + 1 }}</h3>
-            <label>IP адрес первого хоста (десятичный):</label><input type="text" name="subnet_{{ i }}_first_host_decimal"><br>
-            <label>IP адрес первого хоста (двоичный):</label><input type="text" name="subnet_{{ i }}_first_host_binary"><br>
-            <label>IP адрес последнего хоста (десятичный):</label><input type="text" name="subnet_{{ i }}_last_host_decimal"><br>
-            <label>IP адрес последнего хоста (двоичный):</label><input type="text" name="subnet_{{ i }}_last_host_binary"><br>
-            <label>IP адрес подсети (десятичный):</label><input type="text" name="subnet_{{ i }}_subnet_decimal"><br>
-            <label>IP адрес подсети (двоичный):</label><input type="text" name="subnet_{{ i }}_subnet_binary"><br>
-            <label>Маска подсети (десятичная):</label><input type="text" name="subnet_{{ i }}_subnet_mask_decimal"><br>
-            <label>Маска подсети (двоичная):</label><input type="text" name="subnet_{{ i }}_subnet_mask_binary"><br>
-        {% endfor %}
-        <input type="submit" value="Отправить ответ">
-    </form>
+    <div class="container">
+        <h1>Задание 5</h1>
+        <p>Определите диапазон идентификаторов узлов для каждой из образуемых {{task_data.subnets}}х подсетей из сети {{task_data.ip_address}}/{{task_data.network_mask}}</p>
+        <form method="post">
+            {% for i in range(task_data.subnets) %}
+                <h3>Подсеть {{ i + 1 }}</h3>
+                <label for="subnet_{{ i }}_first_host_decimal">IP адрес первого хоста (десятичный):</label><br>
+                <input type="text" id="subnet_{{ i }}_first_host_decimal" name="subnet_{{ i }}_first_host_decimal" required><br>
+                <label for="subnet_{{ i }}_first_host_binary">IP адрес первого хоста (двоичный):</label><br>
+                <input type="text" id="subnet_{{ i }}_first_host_binary" name="subnet_{{ i }}_first_host_binary" required><br>
+                <label for="subnet_{{ i }}_last_host_decimal">IP адрес последнего хоста (десятичный):</label><br>
+                <input type="text" id="subnet_{{ i }}_last_host_decimal" name="subnet_{{ i }}_last_host_decimal" required><br>
+                <label for="subnet_{{ i }}_last_host_binary">IP адрес последнего хоста (двоичный):</label><br>
+                <input type="text" id="subnet_{{ i }}_last_host_binary" name="subnet_{{ i }}_last_host_binary" required><br>
+                <label for="subnet_{{ i }}_subnet_decimal">IP адрес подсети (десятичный):</label><br>
+                <input type="text" id="subnet_{{ i }}_subnet_decimal" name="subnet_{{ i }}_subnet_decimal" required><br>
+                <label for="subnet_{{ i }}_subnet_binary">IP адрес подсети (двоичный):</label><br>
+                <input type="text" id="subnet_{{ i }}_subnet_binary" name="subnet_{{ i }}_subnet_binary" required><br>
+                <label for="subnet_{{ i }}_subnet_mask_decimal">Маска подсети (десятичная):</label><br>
+                <input type="text" id="subnet_{{ i }}_subnet_mask_decimal" name="subnet_{{ i }}_subnet_mask_decimal" required><br>
+                <label for="subnet_{{ i }}_subnet_mask_binary">Маска подсети (двоичная):</label><br>
+                <input type="text" id="subnet_{{ i }}_subnet_mask_binary" name="subnet_{{ i }}_subnet_mask_binary" required><br>
+            {% endfor %}
+            <div class="button-container">
+                <input type="submit" value="Отправить ответ">
+            </div>
+        </form>
+    </div>
 </body>
 </html>

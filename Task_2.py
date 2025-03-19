@@ -14,10 +14,10 @@ class Task_2:
     field_translations = {
         'decimal_network': 'Десятичный IP-адрес сети',
         'binary_network': 'Двоичный IP-адрес сети',
-        'first_ip_decimal': 'Десятичный первый IP-адрес',
-        'first_ip_binary': 'Двоичный первый IP-адрес',
-        'last_ip_decimal': 'Десятичный последний IP-адрес',
-        'last_ip_binary': 'Двоичный последний IP-адрес',
+        'decimal_first_host': 'Десятичный первый IP-адрес',
+        'binary_first_host': 'Двоичный первый IP-адрес',
+        'decimal_last_host': 'Десятичный последний IP-адрес',
+        'binary_last_host': 'Двоичный последний IP-адрес',
         'broadcast_decimal': 'Десятичный широковещательный адрес',
         'broadcast_binary': 'Двоичный широковещательный адрес'
     }

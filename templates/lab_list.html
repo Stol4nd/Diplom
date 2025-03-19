@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Список лабораторных работ</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+<body>
+    <header>
+        <h1>Список лабораторных работ | Жуковский В.E.</h1>
+    </header>
+    <div class="container">
+        <h2>Список лабораторных работ</h2>
+        <div class="button-container">
+            {% for topic in lab_topics %}
+                <a href="{{ url_for('lab_questions', topic=topic) }}"><button class="button active">{{ topic }}</button></a>
+            {% endfor %}
+        </div>
+        <div class="button-container">
+            <a href="{{ url_for('teacher_dashboard') }}"><button class="button">Назад</button></a>
+        </div>
+    </div>  
+</body>
+</html>

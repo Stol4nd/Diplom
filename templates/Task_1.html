@@ -5,21 +5,36 @@
     <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
 </head>
 <body>
-    <h1>Задание 1</h1>
-    <p> Запишите класс, адрес сети, первого и последнего хостов в данной сети, а также маску сети и широковещательный адрес, используя классы, для IP-адреса: {{task_data.ip_address}}</p>
-    <form method="post">
-        <label>Класс IP адреса:</label><input type="text" name="ip_class"><br>
-        <label>IP адрес сети (десятичный):</label><input type="text" name="decimal_network"><br>
-        <label>IP адрес сети (двочиный):</label><input type="text" name="binary_network"><br>
-        <label>IP адрес первого хоста в сети (десятичный):</label><input type="text" name="decimal_first_host"><br>
-        <label>IP адрес первого хоста в сети (двоичный):</label><input type="text" name="binary_first_host"><br>
-        <label>IP адрес последнего хоста в сети (десятичный):</label><input type="text" name="decimal_last_host"><br>
-        <label>IP адрес последнего хоста в сети (двоичный):</label><input type="text" name="binary_last_host"><br>
-        <label>Широковещательный IP адрес (десятичный):</label><input type="text" name="broadcast_decimal"><br>
-        <label>Широковещательный IP адрес (двоичный):</label><input type="text" name="broadcast_binary"><br>
-        <label>Маска подсети (десятичная):</label><input type="text" name="decimal_subnet"><br>
-        <label>Маска подсети (двоичная):</label><input type="text" name="binary_subnet"><br>
-        <input type="submit" value="Отправить ответ">
-    </form>
+    <div class="container">
+        <h1>Задание 1</h1>
+        <p> Запишите класс, адрес сети, первого и последнего хостов в данной сети, а также маску сети и широковещательный адрес, используя классы, для IP-адреса: {{task_data.ip_address}}</p>
+        <form method="post">
+            <label for="ip_class">Класс IP адреса:</label><br>
+            <input type="text" id="ip_class" name="ip_class" required><br>
+            <label for="decimal_network">IP адрес сети (десятичный):</label><br>
+            <input type="text" id="decimal_network" name="decimal_network" required><br>
+            <label for="binary_network">IP адрес сети (двочиный):</label><br>
+            <input type="text" id="binary_network" name="binary_network" required><br>
+            <label for="decimal_first_host">IP адрес первого хоста в сети (десятичный):</label><br>
+            <input type="text" id="decimal_first_host" name="decimal_first_host" required><br>
+            <label for="binary_first_host">IP адрес первого хоста в сети (двоичный):</label><br>
+            <input type="text" id="binary_first_host" name="binary_first_host" required><br>
+            <label for="decimal_last_host">IP адрес последнего хоста в сети (десятичный):</label><br>
+            <input type="text" id="decimal_last_host" name="decimal_last_host" required><br>
+            <label for="binary_last_host">IP адрес последнего хоста в сети (двоичный):</label><br>
+            <input type="text" id="binary_last_host" name="binary_last_host" required><br>
+            <label for="broadcast_decimal">Широковещательный IP адрес (десятичный):</label><br>
+            <input type="text" id="broadcast_binary" name="broadcast_decimal" required><br>
+            <label for="broadcast_binary">Широковещательный IP адрес (двоичный):</label><br>
+            <input type="text" id="broadcast_binary" name="broadcast_binary" required><br>
+            <label for="decimal_subnet">Маска подсети (десятичная):</label><br>
+            <input type="text" id="decimal_subnet" name="decimal_subnet" required><br>
+            <label for="binary_subnet">Маска подсети (двоичная):</label><br>
+            <input type="text" id="binary_subnet" name="binary_subnet" required><br>
+            <div class="button-container">
+                <input type="submit" value="Отправить ответ">
+            </div>
+        </form>
+    </div>
 </body>
 </html>

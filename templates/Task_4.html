@@ -5,14 +5,22 @@
     <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
 </head>
 <body>
-    <h1>Задание 4</h1>
-    <p> Запишите адрес сети и маску сети, соответствующие указанному диапазону IP адресов: от {{ task_data.ip_address_first }} до {{ task_data.ip_address_second }} </p>
-    <form method="post">
-        <label>IP адрес сети (десятичный):</label><input type="text" name="decimal_network"><br>
-        <label>IP адрес сети (двочиный):</label><input type="text" name="binary_network"><br>
-        <label>Маска подсети (десятичная):</label><input type="text" name="decimal_subnet"><br>
-        <label>Маска подсети (двоичная):</label><input type="text" name="binary_subnet"><br>
-        <input type="submit" value="Отправить ответ">
-    </form>
+    <div class="container">
+        <h1>Задание 4</h1>
+        <p> Запишите адрес сети и маску сети, соответствующие указанному диапазону IP адресов: от {{ task_data.ip_address_first }} до {{ task_data.ip_address_second }} </p>
+        <form method="post">
+            <label for="decimal_network">IP адрес сети (десятичный):</label><br>
+            <input type="text" id="decimal_network" name="decimal_network" required><br>
+            <label for="binary_network">IP адрес сети (двочиный):</label><br>
+            <input type="text" id="binary_network" name="binary_network" required><br>
+            <label for="decimal_subnet">Маска подсети (десятичная):</label><br>
+            <input type="text" id="decimal_subnet" name="decimal_subnet" required><br>
+            <label for="binary_subnet">Маска подсети (двоичная):</label><br>
+            <input type="text" id="binary_subnet" name="binary_subnet" required><br>
+            <div class="button-container">
+                <input type="submit" value="Отправить ответ">
+            </div>
+        </form>
+    </div>
 </body>
 </html>

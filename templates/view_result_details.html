@@ -17,7 +17,9 @@
         {% else %}
             <pre>{{ content }}</pre>
         {% endif %}
-        <a href="{{ url_for('view_results') }}"><button class="button">Назад</button></a>
+        <div class="button-container">
+            <a href="{{ url_for('view_results') }}"><button class="button">Назад</button></a>
+        </div>
     </div>
 </body>
 </html>

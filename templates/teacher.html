@@ -6,19 +6,21 @@
 </head>
 <body>
     <header>
-        <h1>Вход для преподавателя | Жуковский В.Е.</h1>
+        <h1>Система помощи работы преподавателя | Жуковский В.Е.</h1>
     </header>
     <div class="container">
         <h2>Вход для преподавателя</h2>
         <form method="post">
             <label for="password">Пароль:</label><br>
-            <input type="password" id="password" name="password" required><br><br>
-            <input type="submit" value="Войти">
+            <input type="password" id="password" name="password" required><br>
+            <div class="button-container">
+                <input type="submit" value="Войти">
+                <a href="{{ url_for('index') }}"><button type="button" class="button">Назад</button></a>
+            </div>
         </form>
         {% if error %}
             <p style="color: red;">{{ error }}</p>
         {% endif %}
-        <a href="{{ url_for('index') }}"><button class="button">Назад</button></a>
     </div>
 </body>
 </html>
