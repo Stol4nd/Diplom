@@ -1,40 +1,35 @@
 <!DOCTYPE html>
-<html>
-<head>
-    <title>Контрольная работа</title>
-    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
-</head>
-<body>
-    <div class="container">
-        <h1>Задание 1</h1>
+{% extends "base.html" %}
+
+{% block header_title %}Задание 1{% endblock %}
+
+{% block content %}
         <p> Запишите класс, адрес сети, первого и последнего хостов в данной сети, а также маску сети и широковещательный адрес, используя классы, для IP-адреса: {{task_data.ip_address}}</p>
-        <form method="post">
+        <form method="post" autocomplete="off">
             <label for="ip_class">Класс IP адреса:</label><br>
-            <input type="text" id="ip_class" name="ip_class" required><br>
+            <input type="text" id="ip_class" name="ip_class" autocomplete="off" required><br>
             <label for="decimal_network">IP адрес сети (десятичный):</label><br>
-            <input type="text" id="decimal_network" name="decimal_network" required><br>
+            <input type="text" id="decimal_network" name="decimal_network" autocomplete="off" required><br>
             <label for="binary_network">IP адрес сети (двочиный):</label><br>
-            <input type="text" id="binary_network" name="binary_network" required><br>
+            <input type="text" id="binary_network" name="binary_network" autocomplete="off" required><br>
             <label for="decimal_first_host">IP адрес первого хоста в сети (десятичный):</label><br>
-            <input type="text" id="decimal_first_host" name="decimal_first_host" required><br>
+            <input type="text" id="decimal_first_host" name="decimal_first_host" autocomplete="off" required><br>
             <label for="binary_first_host">IP адрес первого хоста в сети (двоичный):</label><br>
-            <input type="text" id="binary_first_host" name="binary_first_host" required><br>
+            <input type="text" id="binary_first_host" name="binary_first_host" autocomplete="off" required><br>
             <label for="decimal_last_host">IP адрес последнего хоста в сети (десятичный):</label><br>
-            <input type="text" id="decimal_last_host" name="decimal_last_host" required><br>
+            <input type="text" id="decimal_last_host" name="decimal_last_host" autocomplete="off" required><br>
             <label for="binary_last_host">IP адрес последнего хоста в сети (двоичный):</label><br>
-            <input type="text" id="binary_last_host" name="binary_last_host" required><br>
+            <input type="text" id="binary_last_host" name="binary_last_host" autocomplete="off" required><br>
             <label for="broadcast_decimal">Широковещательный IP адрес (десятичный):</label><br>
-            <input type="text" id="broadcast_binary" name="broadcast_decimal" required><br>
+            <input type="text" id="broadcast_binary" name="broadcast_decimal" autocomplete="off" required><br>
             <label for="broadcast_binary">Широковещательный IP адрес (двоичный):</label><br>
-            <input type="text" id="broadcast_binary" name="broadcast_binary" required><br>
+            <input type="text" id="broadcast_binary" name="broadcast_binary" autocomplete="off" required><br>
             <label for="decimal_subnet">Маска подсети (десятичная):</label><br>
-            <input type="text" id="decimal_subnet" name="decimal_subnet" required><br>
+            <input type="text" id="decimal_subnet" name="decimal_subnet" autocomplete="off" required><br>
             <label for="binary_subnet">Маска подсети (двоичная):</label><br>
-            <input type="text" id="binary_subnet" name="binary_subnet" required><br>
+            <input type="text" id="binary_subnet" name="binary_subnet" autocomplete="off" required><br>
             <div class="button-container">
                 <input type="submit" value="Отправить ответ">
             </div>
         </form>
-    </div>
-</body>
-</html>
+{% endblock %}

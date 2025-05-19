@@ -1,14 +1,10 @@
-<!DOCTYPE html>
-<html>
-<head>
-    <title>Контрольная работа</title>
-    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
-</head>
-<body>
-    <div class="container">
-        <h1>Задание 5</h1>
+{% extends "base.html" %}
+
+{% block header_title %}Задание 5{% endblock %}
+
+{% block content %}
         <p>Определите диапазон идентификаторов узлов для каждой из образуемых {{task_data.subnets}}х подсетей из сети {{task_data.ip_address}}/{{task_data.network_mask}}</p>
-        <form method="post">
+        <form method="post" autocomplete="off">
             {% for i in range(task_data.subnets) %}
                 <h3>Подсеть {{ i + 1 }}</h3>
                 <label for="subnet_{{ i }}_first_host_decimal">IP адрес первого хоста (десятичный):</label><br>
@@ -32,6 +28,4 @@
                 <input type="submit" value="Отправить ответ">
             </div>
         </form>
-    </div>
-</body>
-</html>
+{% endblock %}

@@ -2,14 +2,14 @@
 from flask import render_template, request, redirect, url_for, session
 import ipaddress
 import os
-from config import TEACHER_PASSWORD, STATIC_FOLDER, RESULTS_BASE_DIR, LAB_TOPICS
-from utils import save_results, get_questions
+from config import TEACHER_PASSWORD, STATIC_FOLDER, RESULTS_BASE_DIR, FILES_DICT
+from utils import save_results, get_questions, get_filenames
 from tasks import tasks  # Импорт tasks из tasks.py
 
 def configure_routes(app):
     @app.route('/')
     def index():
-        return render_template('index.html')
+        return render_template('main.html')
 
     @app.route('/student', methods=['GET', 'POST'])
     def student():
@@ -40,6 +40,7 @@ def configure_routes(app):
         if not session.get('teacher_authenticated'):
             return redirect(url_for('teacher'))
         return render_template('teacher_dashboard.html')
+
 
     @app.route('/teacher/view_results')
     def view_results():
@@ -80,13 +81,14 @@ def configure_routes(app):
     def lab_list():
         if not session.get('teacher_authenticated'):
             return redirect(url_for('teacher'))
-        return render_template('lab_list.html', lab_topics=LAB_TOPICS)
+        lab_topics = list(get_filenames().keys())
+        return render_template('lab_list.html', lab_topics=lab_topics)
     
     @app.route('/teacher/lab_questions/<topic>')
     def lab_questions(topic):
         if not session.get('teacher_authenticated'):
             return redirect(url_for('teacher'))
-        if topic not in LAB_TOPICS:
+        if topic not in list(FILES_DICT.keys()):
             return render_template('lab_questions.html', error="Тема не найдена")
         questions = get_questions(topic).split("\n")
         return render_template('lab_questions.html', topic=topic, questions=questions)

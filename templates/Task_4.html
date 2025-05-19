@@ -1,14 +1,10 @@
-<!DOCTYPE html>
-<html>
-<head>
-    <title>Контрольная работа</title>
-    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
-</head>
-<body>
-    <div class="container">
-        <h1>Задание 4</h1>
+{% extends "base.html" %}
+
+{% block header_title %}Задание 4{% endblock %}
+
+{% block content %}
         <p> Запишите адрес сети и маску сети, соответствующие указанному диапазону IP адресов: от {{ task_data.ip_address_first }} до {{ task_data.ip_address_second }} </p>
-        <form method="post">
+        <form method="post" autocomplete="off">
             <label for="decimal_network">IP адрес сети (десятичный):</label><br>
             <input type="text" id="decimal_network" name="decimal_network" required><br>
             <label for="binary_network">IP адрес сети (двочиный):</label><br>
@@ -21,6 +17,4 @@
                 <input type="submit" value="Отправить ответ">
             </div>
         </form>
-    </div>
-</body>
-</html>
+{% endblock %}

@@ -1,0 +1,13 @@
+{% extends "base.html" %}
+
+{% block header_title %}Интеллектуальная система "Сети и телекоммуникации"{% endblock %}
+
+{% block content %}
+<h2>Добро пожаловать в ителлектуальную систему поддержки преподавательской деятельности. </h2>
+<text>Данная система реализует автоматическое составление и проверку контрольных работ студентов.<br>Для преподавателя доступна функция генерации вопросов к лабораторным работам. <br></text>
+<p> <br>Для дальнейшей работы выберите тип входа</p>
+<div class="button-container">
+    <a href="{{ url_for('student') }}"><button class="button active">Студент</button></a>
+    <a href="{{ url_for('teacher') }}"><button class="button active">Преподаватель</button></a>
+</div>
+{% endblock %}

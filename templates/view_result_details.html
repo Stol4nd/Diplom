@@ -1,14 +1,8 @@
-<!DOCTYPE html>
-<html>
-<head>
-    <title>Детали контрольной работы</title>
-    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
-</head>
-<body>
-    <header>
-        <h1>Детали контрольной работы | Жуковский В.E.</h1>
-    </header>
-    <div class="container">
+{% extends "base.html" %}
+
+{% block header_title %}Детали контрольной работы | Жуковский В.Е.{% endblock %}
+
+{% block content %}
         <h2>Результаты проверки</h2>
         <p><strong>Группа:</strong> {{ group }}</p>
         <p><strong>Файл:</strong> {{ filename }}</p>
@@ -20,6 +14,4 @@
         <div class="button-container">
             <a href="{{ url_for('view_results') }}"><button class="button">Назад</button></a>
         </div>
-    </div>
-</body>
-</html>
+{% endblock %}

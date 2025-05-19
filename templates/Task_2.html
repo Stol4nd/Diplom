@@ -1,14 +1,10 @@
-<!DOCTYPE html>
-<html>
-<head>
-    <title>Контрольная работа</title>
-    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
-</head>
-<body>
-    <div class="container">
-        <h1>Задание 2</h1>
+{% extends "base.html" %}
+
+{% block header_title %}Задание 2{% endblock %}
+
+{% block content %}
         <p>Запишите адрес сети, адреса первого и последнего хостов, а также широковещательный адрес для IP-адреса {{task_data.ip_address }} с маской  {{ task_data.subnet_mask }}</p>
-        <form method="post">
+        <form method="post" autocomplete="off">
             <label for="decimal_network">IP адрес сети (десятичный):</label><br>
             <input type="text" id="decimal_network" name="decimal_network" required><br>
             <label for="binary_network">IP адрес сети (двочиный):</label><br>
@@ -33,6 +29,4 @@
                 <input type="submit" value="Отправить ответ">
             </div>
         </form>
-    </div>
-</body>
-</html>
+{% endblock %}

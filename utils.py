@@ -1,20 +1,33 @@
 # utils.py
 import os
-from config import RESULTS_BASE_DIR, get_date_str, APIKEY
+from config import RESULTS_BASE_DIR, get_date_str, APIKEY, MESSAGE, FILES_DICT
 from tasks import tasks
 from gigachat import GigaChat
 
-def get_questions(topic):
-        message = f"""
-            Представь, ты преподаватель по предмету 'Сети и телекоммуникации'. Твоя задача задать 5 вопросов студенту на тему '{topic}' чтобы убедиться в понимании темы студентом.
-            Студенты выполняют лабораторную работу по данной теме с помощью оборудования компании Cisco. При составлении вопросов учитывай данный факт.
-            Опусти вводную и заключительную часть, выдай вопросы просто ненумерованным списком от 1 до 5.
-        """
-        with GigaChat(credentials=APIKEY, verify_ssl_certs=False, model='GigaChat-2-Max') as giga:
-            response = giga.chat(message)
-            questions = response.choices[0].message.content.strip()
-            print(questions)
-            return questions
+
+def get_filenames():
+    with GigaChat(credentials=APIKEY, verify_ssl_certs=False, model='GigaChat-2-Pro') as giga:
+        response = giga.get_files()
+        for file in response.data:
+            FILES_DICT[file.filename] = file.id_
+    return FILES_DICT
+
+def get_questions(file):
+    questions = ""
+    file_id = FILES_DICT[file]
+    with GigaChat(credentials=APIKEY, verify_ssl_certs=False, model='GigaChat-2-Max') as giga:
+        response = giga.chat({
+            "messages":[
+                {
+                    "role": "user",
+                    "content": MESSAGE,
+                    "attachments": [file_id],
+                }
+            ],
+            "temperature": 0.1
+        })
+        questions = response.choices[0].message.content.strip()
+    return questions
     
 def ensure_directory(directory):
     """Создает директорию, если её нет."""

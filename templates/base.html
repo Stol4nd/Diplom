@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Сети и телекоммуникации</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+<body>
+    <header>
+        <h1>{% block header_title %}{% endblock %}</h1>
+    </header>
+    <div class="fillcontainer">
+        <div class="container">
+            {% block content %}
+            {% endblock %}
+        </div>
+    </div>
+    <footer>
+        <p>© Санкт-Петербургский Горный университет императрицы Екатерины II</p>
+    </footer>
+</body>
+</html>

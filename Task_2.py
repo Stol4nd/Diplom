@@ -67,5 +67,4 @@ class Task_2:
                     results[key] = f"{key}: Неправильно. Ответ студента: {student_value}"
         results = {k: v for k, v in results.items() if v is not None}
         return results
-
-        
+   

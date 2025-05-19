@@ -1,27 +1,19 @@
-<!DOCTYPE html>
-<html>
-<head>
-    <title>Вопросы по теме {{ topic }}</title>
-    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
-</head>
-<body>
-    <header>
-        <h1>Вопросы по теме {{ topic }} | Жуковский В.Е.</h1>
-    </header>
-    <div class="container">
+    {% extends "base.html" %}
+    
+    {% block header_title %}Вопросы по теме {{ topic }} | Жуковский В.Е.{% endblock %}
+    
+    {% block content %}
         <h2>Вопросы по теме: {{ topic }}</h2>
         {% if error %}
             <p style="color: red;">{{ error }}</p>
         {% else %}
             <ol>
                 {% for question in questions %}
-                    <li>{{ question }}</li>
+                    <ul>{{ question }}</ul>
                 {% endfor %}
             </ol>
         {% endif %}
         <div class="button-container">
             <a href="{{ url_for('lab_list') }}"><button class="button">Назад</button></a>
         </div>
-    </div>
-</body>
-</html>
+{% endblock %}

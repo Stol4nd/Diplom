@@ -1,10 +1,17 @@
 /* Общие стили для всего сайта */
+html {
+    height: 100%;
+}
+
 body {
     font-family: Arial, sans-serif;
     margin: 0;
     padding: 0;
     background-color: #D3D3D3; /* Светло-серый фон */
     color: #000000; /* Черный текст */
+    min-height: 100%; /* Минимальная высота для sticky footer */
+    display: flex;
+    flex-direction: column;
 }
 
 /* Стили для заголовка (шапки сайта) */
@@ -12,7 +19,7 @@ header {
     background-color: #FF8C00; /* Оранжевый фон */
     color: white;
     padding: 10px 20px;
-    text-align: right;
+    text-align: center;
     border-bottom: 2px solid #D3D3D3;
 }
 
@@ -21,25 +28,56 @@ header h1 {
     font-size: 18px;
 }
 
-/* Стили для основного контейнера */
-.container {
+.fillcontainer {
     max-width: 800px;
     margin: 20px auto;
-    padding: 20px;
+    background-color: transparent; /* Прозрачный фон */
+    flex: 1 0 auto; /* Растягивает обёртку, чтобы оттеснить футер */
+    display: inline-flex;
+    flex-direction: column;
+}
+
+/* Стили для основного содержимого */
+.container {
+    max-width: 800px;
+    min-height: 200px;
+    margin: 20px auto;
+    padding: 20px 50px;
     background-color: white;
     border-radius: 5px;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
 }
 
-.container h2 {
+.container h2 h4 {
+    text-align: left;
+}
+
+text {
+    font-weight: 700;
+}
+
+/* Стили для футера */
+footer {
+    background-color: #FF8C00; /* Оранжевый фон, как у шапки */
+    color: #333333; /* Тёмно-серый текст */
+    padding: 10px 20px;
     text-align: center;
+    border-top: 2px solid #D3D3D3; /* Граница сверху, аналогично шапке */
+    flex-shrink: 0; /* Не позволяет футеру сжиматься */
+    width: 100%;
+    box-sizing: border-box;
+}
+
+footer p {
+    margin: 0;
+    font-size: 14px; /* Уменьшенный размер шрифта */
 }
 
 /* Контейнер для кнопок с использованием flexbox */
 .button-container {
     display: flex;
     flex-wrap: wrap;
-    justify-content: center;
+    justify-content: space-around;
     gap: 10px; /* Расстояние между кнопками */
     margin: 20px 0;
 }
@@ -47,9 +85,9 @@ header h1 {
 /* Стили для кнопок */
 .button {
     display: inline-block;
-    padding: 15px 0; /* Убираем горизонтальные padding, чтобы ширина определялась width */
+    padding: 15px 0px; /* Убираем горизонтальные padding, чтобы ширина определялась width */
     width: 200px; /* Фиксированная ширина для всех кнопок */
-    height: 67;
+    height: 85px;
     background-color: #FF8C00; /* Оранжевый цвет кнопок */
     color: white;
     text-decoration: none;
@@ -121,14 +159,10 @@ a {
     text-decoration: none;
 }
 
-a:hover {
-    text-decoration: underline;
+ul {
+    margin: 20px 0;
 }
 
-/* Стили для футера или нижней части (если нужно) */
-footer {
-    text-align: center;
-    padding: 10px;
-    color: #666;
-    background-color: #D3D3D3;
+a:hover {
+    text-decoration: underline;
 }
