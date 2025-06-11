@@ -67,10 +67,7 @@ class Task_5:
             results_i = {key: None for key in self.field_order}
             for key, student_value in student_answers[i].items():
                 if key in correct_answers[i]:
-                    if student_value == correct_answers[i][key]:
-                        results_i[key] = f"{key}: Правильно"
-                    else:
-                        results_i[key] = f"{key}: Неправильно. Ответ студента: {student_value}"
+                    results_i[key] = (student_value == correct_answers[i][key])
             results_i = {k: v for k, v in results_i.items() if v is not None}
             results.append(results_i)
         return results

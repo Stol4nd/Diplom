@@ -1,0 +1,15 @@
+{% extends "base.html" %}
+
+{% block header_title %}Добавление новой группы | {{ teacher }}{% endblock %}
+
+{% block content %}
+        <h2>Добавление новой группы для написания контрольных работ</h2>
+        <form method="post">
+            <lable for="group">Введите номер группы (например ИАС-21-2):</label><br>
+            <input type="text" id="group_num" name="group_num" required><br>
+            <div class="button-container">
+                <input type="submit" value="Создать">
+                <a href="{{ url_for('teacher_dashboard') }}"><button type="button" class="button">Назад</button></a>
+            </div>
+        </form>
+{% endblock %}

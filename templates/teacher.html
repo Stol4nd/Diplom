@@ -1,11 +1,12 @@
 {% extends "base.html" %}
 
-{% block header_title %}Интеллектуальная система "Сети и телекоммуникации" | Жуковский В.Е.{% endblock %}
+{% block header_title %}Интеллектуальная система "Сети и телекоммуникации"{% endblock %}
 
 {% block content %}
         <h2>Вход для преподавателя</h2>
-        <h4>Введите секретный пароль</h4>
-        <form method="post">
+        <form method="post" autocomplete=off>
+            <lable for="login">Логин:</label><br>
+            <input type="text" id="login" name="login" required><br>
             <label for="password">Пароль:</label><br>
             <input type="password" id="password" name="password" required><br>
             <div class="button-container">
