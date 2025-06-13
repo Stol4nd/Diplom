@@ -1,18 +1,18 @@
 # config.py
 from datetime import datetime
-
+from sqlalchemy import create_engine
 # Основные настройки
 TEACHER_PASSWORD = "secretpassword123"
 RESULTS_BASE_DIR = "student_results"
 STATIC_FOLDER = "static"
 APIKEY = 'Y2RjNGI4ZWEtYWQ4MS00MDRmLTkzMDMtZDgwNjlkYzk3NWRiOjUzOGI2NGY1LWZiZmYtNGZjYy05MGNjLTU2ODA0M2U4NGU4ZA=='
-
 MESSAGE = """
 Представь, ты преподаватель по предмету 'Сети и телекоммуникации'. Твоя задача задать 6 вопросов студенту по данному файлу чтобы убедиться в понимании темы студентом.
 Данный файл является методическими указаниями для выполнения лабораторной работу с помощью оборудования компании Cisco. 
 Опусти вводную и заключительную часть, выдай вопросы просто списком от 1 до 6, 3 вопроса теоретических на понимание темы и 3 вопроса практических по выполнению работы.
 К вопросам добавь ожидаемые ответы от студента. Формат ответ не должен содержать спецсимволов или различного выделения. Вопросы должны быть пронумерованы и отделены друг от друга дополнительной строкой.
 """
+engine = create_engine('sqlite:///labs.db', echo=True)
 FILES_DICT = {}
 # Функция для получения даты без времени
 def get_date_str():

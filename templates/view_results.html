@@ -1,22 +1,33 @@
 {% extends "base.html" %}
 
-{% block header_title %}Просмотр контрольных работ | {{teacher}}{% endblock %}
+{% block header_title %} Результаты контрольной работы | {{teacher}}{% endblock %}
 
 {% block content %}
-        <h2>Контрольные работы студентов</h2>
-        {% if results %}
-            {% for result in results %}
-                <div style="margin-bottom: 20px;">
-                    <img src="{{ url_for('static', filename='icons/document.png') }}" alt="Document Icon" style="width: 20px; vertical-align: middle; margin-right: 10px;">
-                    <a href="{{ url_for('view_result_details', file_path=result.file_path) }}">
-                        <strong>Группа: {{ result.group }}</strong> | Файл: {{ result.filename }}
-                    </a>
-                </div>
-                <hr>
-            {% endfor %}
+        <h2>Результаты проверки контрольной работы группы {{group}}</h2>
+        {% if message %}
+            <h2 style="color: red;">{{ message }}</h2>
         {% else %}
-            <p>Нет доступных контрольных работ.</p>
-        {% endif %}
+        <div class="container">
+            <table border="1" cellpadding="5" cellspacing="0">
+                <thead>
+                    <tr>
+                    <th>ФИО студента</th>
+                    <th>Дата написания</th>
+                    <th>Результат</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for row in group_results %}
+                    <tr>
+                        <td>{{ row[0] }}</td>
+                        <td>{{ row[1] }}</td>
+                        <td>{{ row[2] }}</td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+        {% endif%}
         <div class="button-container">
             <a href="{{ url_for('teacher_dashboard') }}"><button class="button">Назад</button></a>
         </div>

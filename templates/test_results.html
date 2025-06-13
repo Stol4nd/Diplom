@@ -1,0 +1,12 @@
+{% extends "base.html" %}
+
+{% block header_title %}{{ student }} | Контрольная работа | Тема: IP-адресация {% endblock %}
+
+{% block content %}
+        <h2> Результаты выполения контрольной работы </h2>
+        <text> Студент: <strong> {{ student }} </strong></text><br>
+        <text> Результат выполения: <strong> {{ test_results}} </strong></text><br>
+        <div class="button-container">
+            <a href="{{ url_for('index') }}"><button class="button">Вернуться</button></a>
+        </div>
+{% endblock %}

@@ -12,10 +12,9 @@ def get_filenames():
             FILES_DICT[file.filename] = file.id_
     return FILES_DICT
 
-def get_questions(file):
+def get_questions(file_id):
     questions = ""
-    file_id = FILES_DICT[file]
-    with GigaChat(credentials=APIKEY, verify_ssl_certs=False, model='GigaChat-2-Max') as giga:
+    with GigaChat(credentials=APIKEY, verify_ssl_certs=False, model='GigaChat-2-Pro') as giga:
         response = giga.chat({
             "messages":[
                 {

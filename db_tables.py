@@ -1,4 +1,4 @@
-from sqlalchemy import Column, Integer, String, Date, ForeignKey, create_engine
+from sqlalchemy import Column, Integer, String, Date, Boolean, ForeignKey, create_engine
 from sqlalchemy.orm import declarative_base, relationship, Session, validates
 import re
 
@@ -37,6 +37,7 @@ class TestResults(Base):
     student_id = Column(Integer, ForeignKey('students.id_student'))
     test_score = Column(String, nullable=False)
     date = Column(Date, nullable=False)
+    passed = Column(Boolean, nullable=False)
     
     student = relationship("Student", back_populates="test_results")
     

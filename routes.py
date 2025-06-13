@@ -33,14 +33,18 @@ def configure_routes(app):
     @app.route('/exercise_work_homepage/<student>')
     def exercise_work_homepage(student):
         session['student_id'] = get_student_id_db(student)[0]
+        can_do_test = True
         results = get_student_results_db(session['student_id'])
+        for result in results:
+            if result[1] == date.today:
+                can_do_test = False
         session['current_task'] = 1
         session['true_answers'] = 0
-        session['all_answers'] = 0
-        return render_template('exercise_work_homepage.html', student=student, results=results)
+        session['all_answers'] = 0 
+        return render_template('exercise_work_homepage.html', student=student, results=results, can_do_test=can_do_test)
     
-    @app.route('/task', methods=['GET', 'POST'])
-    def task():
+    @app.route('/task/<student>', methods=['GET', 'POST'])
+    def task(student):
         if 'student_id' not in session:
             return redirect(url_for('student_groups'))
         
@@ -48,7 +52,7 @@ def configure_routes(app):
         
         if task_num > 5:
             save_results(session['student_id'], session['true_answers'], session['all_answers'])
-            return redirect(url_for('test_results'))
+            return redirect(url_for('test_results', student=student))
         
         if f'task_{task_num}_data' not in session:
             task = tasks[task_num]()
@@ -93,19 +97,17 @@ def configure_routes(app):
                     session['true_answers'] += int(value)
                     session['all_answers'] += 1
             session['current_task'] = task_num + 1
-            return redirect(url_for('task'))
+            return redirect(url_for('task', student=student))
         
         return render_template(f'task_{task_num}.html', task_data=task_data)
     
-    @app.route('/test_results')
-    def test_results():
+    @app.route('/test_results/<student>')
+    def test_results(student):
         if 'student_id' not in session:
             return redirect(url_for('student_groups'))
-        
-        student_id = session['student_id']
-        result_string = f"{session['true_answers']}/{session['all_answers']}"
-        result_percent = round((session['true_answers']/session['all_answers'])*100)
+        test_results = f"{session['true_answers']}/{session['all_answers']}"
         session.clear()
+        return render_template('test_results.html', student=student, test_results=test_results)
         
     
     @app.route('/teacher', methods=['GET', 'POST'])
@@ -117,7 +119,6 @@ def configure_routes(app):
             try:
                 session['teacher'] = teacher[0][0]
                 session['teacher_authenticated'] = True
-                print(session['teacher'])
                 return redirect(url_for('teacher_dashboard'))
             except IndexError:
                 return render_template('teacher.html', error="Не удалось выполнить вход. Проверьте правильность введенных данных.")
@@ -162,52 +163,48 @@ def configure_routes(app):
         students = sorted([student for (student,) in get_students_db(group)])
         return render_template('add_students.html', teacher=session['teacher'], students=students)
 
-    @app.route('/teacher/view_results')
-    def view_results():
+    @app.route('/teacher/view_results_groups')
+    def view_results_groups():
         if not session.get('teacher_authenticated'):
             return redirect(url_for('teacher'))
-        results = []
-        for group_dir in os.listdir(RESULTS_BASE_DIR):
-            group_path = os.path.join(RESULTS_BASE_DIR, group_dir)
-            if os.path.isdir(group_path):
-                for filename in os.listdir(group_path):
-                    if filename.endswith('.txt'):
-                        file_path = os.path.join(group_path, filename)
-                        # Добавляем только метаданные файла
-                        results.append({
-                            'group': group_dir,
-                            'filename': filename,
-                            'file_path': file_path,
-                            'icon': f'/{STATIC_FOLDER}/images/document_icon.png'
-                        })
-        return render_template('view_results.html', results=results)
+        groups = [group_num for (group_num,) in get_groups()]
+        if len(groups) == 0:
+            return render_template('view_results_groups.html',  teacher=session['teacher'], message="Список групп пуст. Попросите преподавателя добавить группы в базу данных.")
+        else:
+            return render_template('view_results_groups.html',  teacher=session['teacher'], groups=groups)
 
-    @app.route('/teacher/view_result/<path:file_path>')
-    def view_result_details(file_path):
+    @app.route('/teacher/view_results/<group>')
+    def view_results(group):
         if not session.get('teacher_authenticated'):
             return redirect(url_for('teacher'))
+        group_results = get_group_results_db(group)
+        if len(group_results) == 0:
+            return render_template('view_results.html', teacher=session['teacher'], group=group, message="Из данной группы еще никто не написал контрольную работу.")
+        else:
+            return render_template('view_results.html', teacher=session['teacher'], group=group, group_results=group_results)
         
-        try:
-            with open(file_path, 'r', encoding='utf-8') as f:
-                content = f.read()
-                group = os.path.basename(os.path.dirname(file_path))
-                filename = os.path.basename(file_path)
-                return render_template('view_result_details.html', content=content, group=group, filename=filename)
-        except Exception as e:
-            return render_template('view_result_details.html', error=f"Ошибка загрузки файла: {str(e)}")
-    
-    @app.route('/teacher/lab_list')
-    def lab_list():
+    @app.route('/teacher/courses_list')
+    def courses_list():
         if not session.get('teacher_authenticated'):
             return redirect(url_for('teacher'))
-        lab_topics = list(get_filenames().keys())
-        return render_template('lab_list.html', lab_topics=lab_topics)
+        courses = [course[0] for course in get_courses_db()]
+        return render_template('courses_list.html', teacher = session['teacher'], courses=courses)
+    
+    @app.route('/teacher/lab_list/<course>')
+    def lab_list(course):
+        if not session.get('teacher_authenticated'):
+            return  redirect(url_for('teacher'))
+        topics = sorted([topic[0] for topic in get_labs_for_course_db(course)])
+        return render_template('lab_list.html', teacher = session['teacher'], topics=topics)
     
     @app.route('/teacher/lab_questions/<topic>')
     def lab_questions(topic):
         if not session.get('teacher_authenticated'):
             return redirect(url_for('teacher'))
-        if topic not in list(FILES_DICT.keys()):
-            return render_template('lab_questions.html', error="Тема не найдена")
-        questions = get_questions(topic).split("\n")
-        return render_template('lab_questions.html', topic=topic, questions=questions)
+        file_id, question_path = get_file_id_db(topic)
+        questions = get_questions(file_id)
+        questions = questions.split('\n')
+        with open(question_path, 'w', encoding='utf-8') as f:
+            for question in questions:
+                f.write(question.strip() + '\n')
+        return render_template('lab_questions.html', teacher = session['teacher'], topic=topic, questions=questions)

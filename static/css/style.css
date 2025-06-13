@@ -171,3 +171,24 @@ ul {
 a:hover {
     text-decoration: underline;
 }
+
+table {
+    margin: 40px auto;        /* Центрирование таблицы по горизонтали */
+    border-collapse: collapse;
+    min-width: 500px;
+    font-size: 1.2em;         /* Немного увеличенный шрифт */
+}
+
+th, td {
+    text-align: center;       /* Центрирование текста внутри ячеек */
+    padding: 12px 20px;       /* Побольше отступы для лучшего вида */
+    border: 1px solid #aaa;   /* Серые границы */
+}
+
+thead {
+    background-color: #f2f2f2; /* Светлый фон для заголовка */
+}
+
+tbody tr:nth-child(even) {
+    background-color: #fafafa; /* Зебра для четных строк */
+}
