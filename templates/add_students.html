@@ -1,0 +1,28 @@
+{% extends "base.html" %}
+
+{% block header_title %}Добавление студентов в группу | {{teacher}}{% endblock %}
+
+{% block content %}
+        <h2>Студенты группы {{ group }}</h2>
+        {% if students %}
+            {% for student in students %}
+                <div>
+                    <img src="{{ url_for('static', filename='icons/student.png') }}" alt="Student Icon" style="width: 20px; vertical-align: middle; margin-right: 10px;">
+                    <strong>{{ student }}</strong>
+                </div>
+                <hr>
+            {% endfor %}
+        {% else %}
+            <p>В данной группе пока нет студентов.</p>
+        {% endif %}
+        <form method="post" autocomplete=off>
+            <label for="full_name">Введите полные фамилию, имя и отчество (при наличии) студента </label><br>
+            <input type="text" id="full_name" name="full_name"><br>
+            <div class="button-container">
+                <input type="submit" value="Добавить студента">
+            </div>
+        </form>
+        <div class="button-container">
+            <a href="{{ url_for('add_student_group') }}"><button class="button">Назад</button></a>
+        </div>
+{% endblock %}

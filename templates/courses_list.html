@@ -1,0 +1,15 @@
+{% extends "base.html" %}
+
+{% block header_title %}Список лабораторных работ | {{teacher}} {% endblock %}
+
+{% block content %}
+        <h2>Список курсов по лабораторным работам</h2>
+        <div class="button-container">
+            {% for course in courses %}
+                <a href="{{ url_for('lab_list', course=course) }}"><button class="button active">{{ course }}</button></a>
+            {% endfor %}
+        </div>
+        <div class="button-container">
+            <a href="{{ url_for('teacher_dashboard') }}"><button class="button">Назад</button></a>
+        </div>
+{% endblock %}

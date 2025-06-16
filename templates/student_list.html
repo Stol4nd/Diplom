@@ -1,0 +1,26 @@
+{% extends "base.html" %}
+
+{% block header_title %} Аутентификация студента | Контрольная работа | Тема: IP-адресация {% endblock %}
+
+{% block content %}
+        <h2>Студенты группы {{ group }}</h2>
+        <text> Выберите студента для выполнения контрольной работы <br></text>
+        {% if students %}
+            <div class="student-list">
+                {% for student in students %}
+                    <div>
+                        <img src="{{ url_for('static', filename='icons/student.png') }}" alt="Student Icon" style="width: 20px; vertical-align: middle; margin-right: 10px;">
+                        <a href="{{ url_for('exercise_work_homepage', student=student) }}">
+                            <strong>{{ student }}</strong>
+                        </a>
+                    </div>
+                    <hr>
+                {% endfor %}
+            </div>
+        {% else %}
+            <p>В данной группе пока нет студентов. Попросите преподавателя добавить студентов в группу.</p>
+        {% endif %}
+        <div class="button-container">
+            <a href="{{ url_for('student_groups') }}"><button class="button">Назад</button></a>
+        </div>
+{% endblock %}

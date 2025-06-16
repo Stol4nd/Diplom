@@ -1,6 +1,6 @@
     {% extends "base.html" %}
     
-    {% block header_title %}Вопросы по теме {{ topic }} | Жуковский В.Е.{% endblock %}
+    {% block header_title %}Вопросы по теме {{ topic }} | {{teacher}}{% endblock %}
     
     {% block content %}
         <h2>Вопросы по теме: {{ topic }}</h2>
@@ -14,6 +14,6 @@
             </ol>
         {% endif %}
         <div class="button-container">
-            <a href="{{ url_for('lab_list') }}"><button class="button">Назад</button></a>
+            <a href="{{ url_for('courses_list') }}"><button class="button">Назад</button></a>
         </div>
 {% endblock %}

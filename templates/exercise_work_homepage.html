@@ -1,0 +1,33 @@
+{% extends "base.html" %}
+
+{% block header_title %} {{ student }} | Контрольная работа | Тема: IP-адресация {% endblock %}
+
+{% block content %}
+        {% if results %}
+            <h2> Предыдущие результаты </h2>
+            {% for result in results %}
+                <div>
+                    <text> Контрольная работа от {{ result[0] }}: баллов {{ result[1] }} </text><br>
+                </div>
+            {% endfor %}    
+        {% endif %}
+        <h2> Правила выполнения контрольной работы </h2>
+        <text> Вам будет предложено написать контрольную работу на тему IP-адресации. <strong> Внимательно ознакомьтесь с правилами выполнения данной работы! </strong> <text>
+        <ul>
+            <li> В работе 5 вопросов </li>
+            <li> Каждый вопрос содержит несколько полей для ввода ответов. </li>
+            <li> Необходимо заполнить все поля </li> 
+            <li> Для прохождения контрольной работы необходимо дать все правильные ответы. </li>
+            <li> Десятичный адрес записывается с точкой. <strong> Пример: 255.255.255.255</strong> </li> 
+            <li> Двоичный адрес записывается без точки. <strong> Пример: 11111111111111111111111111111111 </strong> </li>
+        </ul>
+        <div class="button-container">
+            {% if can_do_test %}
+                <a href="{{ url_for('task', student=student)}}"><button class="button">Начать</button></a>
+            {% else %}
+                <text> Вы исчерпали все попытки на сегодня. Возвращайтесь завтра, чтобы попытаться еще раз </text><br>
+                <a href="{{ url_for('index') }}"><button class="button">Вернуться</button></a>
+            {% endif %}
+            <a href="{{ url_for('student_groups') }}"><button class="button">Назад</button></a>
+        </div>
+{% endblock %}

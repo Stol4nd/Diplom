@@ -1,0 +1,19 @@
+{% extends "base.html" %}
+
+{% block header_title %}Результаты контрольных работ студентов | {{ teacher }} {% endblock %}
+
+{% block content %}
+        <h2>Список групп студентов</h2>
+        {% if message %}
+            <h2 style="color: red;">{{ message }}</h2>
+        {% endif %}
+        <text> Выберите группу для просмотра результатов контрольной работы</text>
+        <div class="button-container">
+            {% for group in groups %}
+                <a href="{{ url_for('view_results', group=group) }}"><button class="button active">{{ group }}</button></a>
+            {% endfor %}
+        </div>
+        <div class="button-container">
+            <a href="{{ url_for('teacher_dashboard') }}"><button class="button">Назад</button></a>
+        </div>
+{% endblock %}

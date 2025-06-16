@@ -1,0 +1,21 @@
+{% extends "base.html" %}
+
+{% block header_title %}Добавление студентов в группу | {{ teacher }}{% endblock %}
+
+{% block content %}
+        <h2>Выберите группу к которой хотите добавить студента</h2>
+        {% if message %}
+            <h2 style="color: red;">{{ message }}</h2>
+            <div class="button-container">
+                <a href="{{ url_for('add_group')}}"><button class="button active">Добавить группу</button></a>
+            </div>
+        {% endif %}
+        <div class="button-container">
+            {% for group in groups %}
+                <a href="{{ url_for('add_student', group=group) }}"><button class="button active">{{ group }}</button></a>
+            {% endfor %}
+        </div>
+        <div class="button-container">
+            <a href="{{ url_for('teacher_dashboard') }}"><button class="button">Назад</button></a>
+        </div>
+{% endblock %}

@@ -1,4 +1,5 @@
 from gigachat import GigaChat
+from config import MESSAGE
 
 ApiKey = 'Y2RjNGI4ZWEtYWQ4MS00MDRmLTkzMDMtZDgwNjlkYzk3NWRiOjUzOGI2NGY1LWZiZmYtNGZjYy05MGNjLTU2ODA0M2U4NGU4ZA=='
 message_1 = """
@@ -13,11 +14,25 @@ message_2 = """
     К вопросам добавь ожидаемые ответы от студента. Формат ответ
 """
            
-            
+questions = ""            
 with GigaChat(credentials=ApiKey, verify_ssl_certs=False, model='GigaChat-2-Pro') as giga:
-    # giga.upload_file(open('labs/2.7.2 Lab - Configure Single-Area OSPFv2.docx', 'rb'), purpose='general')
-    response = giga.get_files()
-    print(response.data[0])
+    response = giga.chat({
+            "messages":[
+                {
+                    "role": "user",
+                    "content": MESSAGE,
+                    "attachments": ["47bc530a-1d5d-4de8-9fa9-43f009f62cdb"],
+                }
+            ],
+            "temperature": 0.1
+        })
+    questions = response
+    print(questions.choices[0].message.content.strip())
+    # response = giga.get_files()
+    # for file in response.data:
+    #     giga.delete_file(file.id_)
+    # response = giga.get_files()
+    # print(response.data)
     # response = giga.chat({
     #         "messages":[
     #             {

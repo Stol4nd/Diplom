@@ -1,14 +1,16 @@
 {% extends "base.html" %}
 
-{% block header_title %}Панель преподавателя | Жуковский В.Е.{% endblock %}
+{% block header_title %}Панель преподавателя | {{teacher}}{% endblock %}
 
 {% block content %}
-        <h2>Добро пожаловать, Владимир Евгеньевич!</h2>
-        <text> Здесь вы можете просмотреть результат выполенения контрольных работ студентами и сгенерировать вопросы для лабораторных работ, выполняемых студентами. </text>
-        <p> Для дальнейшей работы, пожалуйста, выберите действие </p>
+        <h2>Добро пожаловать!</h2>
+        <text> Здесь вы можете просмотреть результат выполенения контрольных работ студентами и сгенерировать вопросы для лабораторных работ, выполняемых студентами. </text><br><br>
+        <text> Для дальнейшей работы, пожалуйста, выберите действие </text>
         <div class="button-container">
-            <a href="{{ url_for('view_results') }}"><button class="button active">Просмотр контрольных работ</button></a>
-            <a href="{{ url_for('lab_list') }}"><button class="button active">Список лабораторных работ</button></a>
+            <a href="{{ url_for('view_results_groups') }}"><button class="button active">Просмотр контрольных работ</button></a>
+            <a href="{{ url_for('courses_list') }}"><button class="button active">Список лабораторных работ</button></a>
+            <a href="{{ url_for('add_group')}}"><button class="button active">Добавить группу</button></a>
+            <a href="{{ url_for('add_student_group')}}"><button class="button active">Добавить студента</button></a>
             <a href="{{ url_for('index') }}"><button class="button">Выйти</button></a>
         </div>
 {% endblock %}

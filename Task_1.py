@@ -91,9 +91,5 @@ class Task_1:
         results = {key: None for key in self.field_order}
         for key, student_value in student_answers.items():
             if key in correct_answers:
-                if student_value == correct_answers[key]:
-                    results[key] = f"{key}: Правильно"
-                else:
-                    results[key] = f"{key}: Неправильно. Ответ студента: {student_value}"
-        results = {k: v for k, v in results.items() if v is not None}
+                results[key] = (student_value == correct_answers[key])
         return results
