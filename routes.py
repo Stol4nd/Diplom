@@ -2,10 +2,10 @@
 from flask import render_template, request, redirect, url_for, session
 import ipaddress
 import os
-from config import STATIC_FOLDER, RESULTS_BASE_DIR, FILES_DICT
-from utils import get_questions, get_filenames
+from config import STATIC_FOLDER, RESULTS_BASE_DIR, tasks
+from utils import get_questions
 from db import *
-from tasks import tasks
+
 
 def configure_routes(app):
     @app.route('/')

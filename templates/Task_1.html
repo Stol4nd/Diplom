@@ -5,7 +5,7 @@
 
 {% block content %}
         <p> Запишите класс, адрес сети, первого и последнего хостов в данной сети, а также маску сети и широковещательный адрес, используя классы, для IP-адреса: {{task_data.ip_address}}</p>
-        <form method="post" autocomplete="off">
+        <form method="post" autocomplete="off" required>
             <label for="ip_class">Класс IP адреса:</label><br>
             <input type="text" id="ip_class" name="ip_class" autocomplete="off" required><br>
             <label for="decimal_network">IP адрес сети (десятичный):</label><br>
